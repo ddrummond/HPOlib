@@ -6,7 +6,7 @@ variable {
  type: FLOAT
  size: 1
  min:  0.0
- max:  0.05
+ max:  0.03
 }
 
 variable {
@@ -14,5 +14,5 @@ variable {
  type: FLOAT
  size: 1
  min:  0.0
- max:  0.05
+ max:  0.03
 }

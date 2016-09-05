@@ -1,9 +1,10 @@
 Set up your environment before running experiments:
 ===================================================
 Instructions taken from: https://github.com/automl/HPOlib/blob/master/INSTALL.md
-
+cd ~/dev
 virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
+export PYTHONPATH=/home/ddrummond/PycharmProjects/tutorials/src/:$PYTHONPATH
 
 Convert config search spaces:
 ----------------------------------
@@ -38,5 +39,6 @@ HPOlib-plot SMAC smac_2_06_01-dev_1_*/smac_*.pkl -s `pwd`/Plots/
 HPOlib-plot flf smac_2_06_01-dev_1_*/smac_*.pkl -s `pwd`/Plots/
 -------------
 {'status': 3, 'std': 0.0, 'instance_durations': array([ 69.918]), 'instance_results': array([-9.841764]), 'test_error': nan, 'params': OrderedDict([('-enterLongThresh', '0.020344370133324588'), ('-exitLongThresh', '0.020476588256197456')]), 'result': -9.8417639999999995, 'duration': 69.918000000000006, 'instance_status': array([3])}
+{'status': 3, 'std': 0.0, 'instance_durations': array([ 150.996]), 'instance_results': array([-11.552057]), 'test_error': nan, 'params': OrderedDict([('-enterLongThresh', '0.024193399603855994'), ('-exitLongThresh', '0.023484284435631435')]), 'result': -11.552057, 'duration': 150.99600000000001, 'instance_status': array([3])}
 
 

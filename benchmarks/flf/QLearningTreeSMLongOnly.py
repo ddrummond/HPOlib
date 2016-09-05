@@ -21,13 +21,13 @@ def myAlgo(params, **kwargs):
     # for crossvalidation
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
-    cmd = r'python3 -u /home/ddrummond/PycharmProjects/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_[1-2][0-7].csv'.format(enterLongThresh, exitLongThresh)
+    cmd = r'python3 -u /home/ddrummond/PycharmProjects/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv'.format(enterLongThresh, exitLongThresh)
     print("DD executing command: " + cmd)
-    p = subprocess.Popen([cmd], shell=True, cwd=r'/home/ddrummond/PycharmProjects/tutorials/src', stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    p = subprocess.Popen([cmd], shell=True, cwd=r'/home/ddrummond/PycharmProjects/tutorials/src/', stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()
     exitCode = p.wait()
     if exitCode != 0:
-        print "Script exited with non zero value [{:d}]".format(exitCode)
+        print("Script exited with non zero value [{:d}]".format(exitCode))
 
     if err != None:
         print("DD stderr: " + err)
@@ -48,5 +48,4 @@ if __name__ == "__main__":
     args, params = benchmark_util.parse_cli()
     result = myAlgo(params, **args)
     duration = time.time() - starttime
-    print "Result for ParamILS: %s, %f, 1, %f, %d, %s" % \
-        ("SAT", abs(duration), result, -1, str(__file__))
+    print("Result for ParamILS: %s, %f, 1, %f, %d, %s" % ("SAT", abs(duration), result, -1, str(__file__)))
