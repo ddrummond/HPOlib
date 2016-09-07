@@ -1,10 +1,16 @@
 Set up your environment before running experiments:
 ===================================================
 Instructions taken from: https://github.com/automl/HPOlib/blob/master/INSTALL.md
+
+Set up your Environment (do this for every session):
 cd ~/dev
 virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
 export PYTHONPATH=/home/ddrummond/PycharmProjects/tutorials/src/:$PYTHONPATH
+export EXPERIMENT_HOME=/home/ddrummond/PycharmProjects  (set this to where you checked out the target project you want to optimize)
+
+If the system has never been setup before, run the install scripts:
+ 
 
 Convert config search spaces:
 ----------------------------------
