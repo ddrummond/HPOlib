@@ -2,6 +2,7 @@ import math
 import time
 import subprocess
 import HPOlib.benchmark_util as benchmark_util
+import os
 
 def myAlgo(params, **kwargs):
     # Params is a dict that contains the params
@@ -21,9 +22,10 @@ def myAlgo(params, **kwargs):
     # for crossvalidation
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
-    cmd = r'python3 -u /home/ddrummond/PycharmProjects/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv'.format(enterLongThresh, exitLongThresh)
+    experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv'.format(experimentHome, enterLongThresh, exitLongThresh)
     print("DD executing command: " + cmd)
-    p = subprocess.Popen([cmd], shell=True, cwd=r'/home/ddrummond/PycharmProjects/tutorials/src/', stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()
     exitCode = p.wait()
     if exitCode != 0:
