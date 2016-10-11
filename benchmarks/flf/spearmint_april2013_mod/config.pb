@@ -16,3 +16,12 @@ variable {
  min:  0.0
  max:  0.03
 }
+
+variable {
+ name: "reversalSig"
+ type: INT
+ size: 1
+ min:  1
+ max:  5
+}
+

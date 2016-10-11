@@ -1,0 +1,4 @@
+maxTreeDepth [10, 200] [100]i
+n_estimators [25, 150] [50]i
+min_samples_leaf [2, 15] [3]i
+min_samples_split [4, 30] [6]i

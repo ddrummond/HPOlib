@@ -16,15 +16,25 @@ def myAlgo(params, **kwargs):
     if x < 0 or x > 3.5:
         raise ValueError("x not between 0 and 3.5: %s" % x)
      '''
-    enterLongThresh = float(params["enterLongThresh"])
-    exitLongThresh = float(params["exitLongThresh"])
-    reversalSig = int(params["reversalSig"])
+    enterLongThresh = float(params.get("enterLongThresh", "0.0012742"))
+    exitLongThresh = float(params.get("exitLongThresh", "0.0028681"))
+    reversalSig = int(params.get("reversalSig", "3"))
+    #Hyper params
+    maxTreeDepth = int(params.get("maxTreeDepth", "100"))
+    n_estimators = int(params.get("n_estimators", "50"))
+    min_samples_leaf = int(params.get("min_samples_leaf", "3"))
+    min_samples_split = int(params.get("min_samples_split", "6"))
+    max_features = None
+    if "max_features" in params:
+        max_features = int(params["max_features"])
+    else:
+        max_features = "auto"
     # **kwargs contains further information, like
     # for crossvalidation
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --inputGlobPath=tests/testData/features_reinfocement_training_*.csv'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()

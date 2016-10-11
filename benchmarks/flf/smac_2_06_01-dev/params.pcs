@@ -1,2 +1,3 @@
 enterLongThresh [0.0, 0.03] [0.01]
 exitLongThresh [0.0, 0.03] [0.01]
+reversalSig [1, 4] [2]i

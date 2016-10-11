@@ -7,9 +7,25 @@ cd ~/dev
 virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
 export PYTHONPATH=/home/ddrummond/PycharmProjects/tutorials/src/:$PYTHONPATH
-export EXPERIMENT_HOME=/home/ddrummond/PycharmProjects  (set this to where you checked out the target project you want to optimize)
+export EXPERIMENT_HOME=/home/ddrummond/PycharmProjects  (set this to where you checked out the target project you want to optimize)   (laptop)
+#export EXPERIMENT_HOME=/home/ddrummond/dev     (desktop machine)
 
 If the system has never been setup before, run the install scripts:
+1.) Get virtualenv, then load a freshly created virtualenv. (If you are not familiar with virtualenv, you might want to read more about it)
+
+pip install virtualenv
+virtualenv virtualHPOlib
+source virtualHPOlib/bin/activate
+2.) Install numpy, scipy, matplotlib, as this doesn't work through setup.py
+
+easy_install -U distribute
+pip install numpy
+pip install scipy==0.13.2
+pip install matplotlib
+
+3.) run setup.py
+   cd HPOLib
+   python setup.py install
  
 
 Convert config search spaces:
