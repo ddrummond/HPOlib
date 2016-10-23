@@ -4,7 +4,7 @@ Instructions taken from: https://github.com/automl/HPOlib/blob/master/INSTALL.md
 
 Set up your Environment (do this for every session):
 cd ~/dev
-virtualenv virtualHPOlib
+sudo virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
 export PYTHONPATH=/home/ddrummond/PycharmProjects/tutorials/src/:$PYTHONPATH
 export EXPERIMENT_HOME=/home/ddrummond/PycharmProjects  (set this to where you checked out the target project you want to optimize)   (laptop)
@@ -14,7 +14,7 @@ If the system has never been setup before, run the install scripts:
 1.) Get virtualenv, then load a freshly created virtualenv. (If you are not familiar with virtualenv, you might want to read more about it)
 
 pip install virtualenv
-virtualenv virtualHPOlib
+sudo virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
 2.) Install numpy, scipy, matplotlib, as this doesn't work through setup.py
 

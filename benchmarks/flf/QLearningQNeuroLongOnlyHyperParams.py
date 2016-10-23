@@ -20,21 +20,26 @@ def myAlgo(params, **kwargs):
     exitLongThresh = float(params.get("exitLongThresh", "0.0028681"))
     reversalSig = int(params.get("reversalSig", "3"))
     #Hyper params
-    maxTreeDepth = int(params.get("maxTreeDepth", "100"))
-    min_samples_leaf = int(params.get("min_samples_leaf", "3"))
-    min_samples_split = int(params.get("min_samples_split", "6"))
-    n_estimators = int(params.get("n_estimators", "50"))
-    max_features = None
-    if "max_features" in params:
-        max_features = int(params["max_features"])
-    else:
-        max_features = "auto"
+    #--nb_epoch=10 --layerCount=8 --firstLayerOutputCount=22 --learningRate=0.0001 --beta1=0.9 --beta2=0.999 --epsilon=1e-08
+    nb_epoch = int(params.get("nb_epoch", "35"))
+    layerCount = int(params.get("layerCount", "16"))
+    firstLayerOutputCount = int(params.get("firstLayerOutputCount", "42"))
+    learningRate = float(params.get("learningRate", "0.0672"))
+    beta1 = float(params.get("beta1", "0.7884"))
+    beta2 = float(params.get("beta2", "0.19973"))
+    epsilon = float(params.get("epsilon", "0.0191431"))
+    rho = float(params.get("rho", "0.95"))
+    decay = float(params.get("decay", "1e-7"))
+    momentum = float(params.get("momentum", "0.9"))
+    nesterov = bool(params.get("nesterov", "True"))
+
     # **kwargs contains further information, like
     # for crossvalidation
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --trainingEpochs=15 --useSaveQSpace=True --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features)
+    #--model=0 --trainingBatchSize=1 --layerSizeStep=1 --nb_epoch=10 --firstLayerOutputCount=22 --learningRate=0.0001 --beta1=0.9 --beta2=0.999 --epsilon=1e-08
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --useSaveQSpace=True --trainingEpochs=15 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --model=0 --trainingBatchSize=1 --layerSizeStep=1 --nb_epoch={:d} --layerCount={:d} --firstLayerOutputCount={:d} --learningRate={:.9f} --beta1={:.9f} --beta2={:.9f} --epsilon={:.9f} --rho={:.9f} --decay={:.9f} --momentum={:.9f} --nesterov={}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, nb_epoch, layerCount, firstLayerOutputCount, learningRate, beta1, beta2, epsilon, rho, decay, momentum, nesterov)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()

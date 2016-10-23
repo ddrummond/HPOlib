@@ -1,0 +1,7 @@
+firstLayerOutputCount [22, 132] [22]i
+layerCount [2, 20] [8]i
+nb_epoch [3, 100] [10]i
+learningRate [0.00000001, 0.1] [0.0001]
+decay [0.00000001, 0.1] [0.0001]
+momentum [0.0001, 1.0] [0.5]
+nesterov {"True", "False"} ["True"]c
