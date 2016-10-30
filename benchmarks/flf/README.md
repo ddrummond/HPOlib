@@ -7,6 +7,7 @@ cd ~/dev
 sudo virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
 export PYTHONPATH=/home/ddrummond/PycharmProjects/tutorials/src/:$PYTHONPATH
+#export PYTHONPATH=/home/ddrummond/dev/tutorials/src:$PYTHONPATH
 export EXPERIMENT_HOME=/home/ddrummond/PycharmProjects  (set this to where you checked out the target project you want to optimize)   (laptop)
 #export EXPERIMENT_HOME=/home/ddrummond/dev     (desktop machine)
 
