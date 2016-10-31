@@ -20,9 +20,9 @@ def myAlgo(params, **kwargs):
     exitLongThresh = float(params.get("exitLongThresh", "0.0028681"))
     reversalSig = int(params.get("reversalSig", "3"))
     #Hyper params
-    maxTreeDepth = int(params.get("maxTreeDepth", "100"))
-    min_samples_leaf = int(params.get("min_samples_leaf", "3"))
-    min_samples_split = int(params.get("min_samples_split", "6"))
+    maxTreeDepth = int(params.get("maxTreeDepth", "68"))
+    min_samples_leaf = int(params.get("min_samples_leaf", "5"))
+    min_samples_split = int(params.get("min_samples_split", "43"))
     n_estimators = int(params.get("n_estimators", "50"))
     max_features = None
     if "max_features" in params:
@@ -34,7 +34,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --trainingEpochs=15 --useSaveQSpace=True --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=3 --trainingEpochs=15 --useSaveQSpace=True --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()
