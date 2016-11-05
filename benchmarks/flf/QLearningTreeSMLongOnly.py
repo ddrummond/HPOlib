@@ -24,7 +24,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --trainingEpochs=20 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth=100 --n_estimators=50 --min_samples_leaf=3 --min_samples_split=6 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --instanceOrder=0'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()

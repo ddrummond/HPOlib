@@ -1,5 +1,2 @@
-maxTreeDepth [30, 225] [100]i
-min_samples_leaf [3, 20] [6]i
-min_samples_split [6, 60] [20]i
 n_estimators [20, 100] [50]i
 learningRate [0.001, 1.0] [1.0]
