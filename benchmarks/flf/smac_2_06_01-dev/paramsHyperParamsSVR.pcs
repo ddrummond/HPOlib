@@ -1,0 +1,4 @@
+C [0.01, 10.0] [1.886]
+epsilon [0.001, 0.50] [0.0152]
+gamma [0.01, 5.0] [0.335192]
+shrinking {True, False} [False]
