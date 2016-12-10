@@ -17,6 +17,7 @@ If the system has never been setup before, run the install scripts:
 pip install virtualenv
 sudo virtualenv virtualHPOlib
 source virtualHPOlib/bin/activate
+
 2.) Install numpy, scipy, matplotlib, as this doesn't work through setup.py
 
 easy_install -U distribute
