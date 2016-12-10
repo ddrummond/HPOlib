@@ -5,5 +5,5 @@ rsiDCPeriodFraction [0.1, 1.5] [0.1125]
 trendEMAPeriod [20, 55] [23]i
 rsiOverSoldThresh [20.0, 35.0] [27.78]
 rsiOverBoughtThresh [65.0, 80.0] [79.71]
-trendAngleThresh [0.5, 10.0] [5.5]
+trendAngleThresh [0.5, 10.0] [8.25]
 trendLinregPeriods [10, 40] [28]i
