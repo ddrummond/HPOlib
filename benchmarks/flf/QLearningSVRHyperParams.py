@@ -24,14 +24,17 @@ def myAlgo(params, **kwargs):
     C = float(params.get("C", "1.0"))
     epsilon = float(params.get("epsilon", "0.10"))
     gamma = float(params.get("gamma", "0.0454"))
+    degree = int(params.get("degree", "3"))
+    coef0 = float(params.get("coef0", "0.0"))
     shrinking = bool(params.get("shrinking", "True"))
     tol = float(params.get("tol", "1.07e-3"))
+    kernel = params.get("kernel", "poly")
     # **kwargs contains further information, like
     # for crossvalidation
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --useSaveQSpace=True --trainingEpochs=15 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --model=6 --instanceOrder=0 --kernel=rbf --max_iter=5000 --cache_size=5000.0 --C={:.2f} --epsilon={:.6f} --gamma={:.6f} --shrinking={} --tol={:.6f}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, C, epsilon, gamma, shrinking, tol)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --useSaveQSpace=True --trainingEpochs=15 --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --model=6 --instanceOrder=0 --kernel={} --degree={:d} --coef0={:.2f} --C={:.2f} --epsilon={:.6f} --gamma={:.6f} --shrinking={} --tol={:.6f} --cache_size=5000.0 --max_iter=4000'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, kernel, degree, coef0, C, epsilon, gamma, shrinking, tol)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()
