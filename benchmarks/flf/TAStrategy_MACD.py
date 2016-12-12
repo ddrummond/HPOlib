@@ -36,8 +36,6 @@ def myAlgo(params, **kwargs):
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
 
-    #/usr/bin/python3.5                       StrategyRunner.py  --macdSlowPeriodFraction=1.3 --macdFastPeriodFraction=0.6 --signalperiod=9
-
     cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_ManyTraining --taStrategy=110 --bbPriceType={:d} --macdSlowPeriodFraction={:0.2f} --macdFastPeriodFraction={:0.2f} --signalperiod={:d}'\
         .format(experimentHome, bbPriceType, macdSlowPeriodFraction, macdFastPeriodFraction, signalperiod )
     print("DD executing command: " + cmd)
