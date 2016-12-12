@@ -66,3 +66,4 @@ HPOlib-plot flf smac_2_06_01-dev_1_*/smac_*.pkl -s `pwd`/Plots/
 {'status': 3, 'std': 0.0, 'instance_durations': array([ 150.996]), 'instance_results': array([-11.552057]), 'test_error': nan, 'params': OrderedDict([('-enterLongThresh', '0.024193399603855994'), ('-exitLongThresh', '0.023484284435631435')]), 'result': -11.552057, 'duration': 150.99600000000001, 'instance_status': array([3])}
 
 
+/usr/bin/python3.5 /home/ddrummond/pycharm-community-2016.1.2/helpers/pydev/pydevd.py --multiproc --qt-support --client 127.0.0.1 --port 42364 --file /home/ddrummond/PycharmProjects/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=True --evalMethod=TA_ManyEval --taStrategy=110 --bbPriceType=1 --macdSlowPeriodFraction=1.3 --macdFastPeriodFraction=0.6 --signalperiod=9
