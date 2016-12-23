@@ -19,7 +19,7 @@ def myAlgo(params, **kwargs):
     bbPriceType = int(params.get("bbPriceType", "0"))
     bbTimePeriod = int(params.get("bbTimePeriod", "10"))
     bbStdevs = float(params.get("bbStdevs", "2.0"))
-    rsiDCPeriodFraction = float(params.get("rsiDCPeriodFraction", "0.5"))
+    rsiDCPeriodFraction = int(params.get("rsiDCPeriodFraction", "14"))
     trendEMAPeriod = int(params.get("trendEMAPeriod", "50"))
     rsiOverSoldThresh = float(params.get("rsiOverSoldThresh", "30.0"))
     rsiOverBoughtThresh = float(params.get("rsiOverBoughtThresh", "70"))
@@ -32,7 +32,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
 
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_ManyEval --taStrategy=100 --bbPriceType={:d} --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:.2f} --trendEMAPeriod={:d} --rsiOverSoldThresh={:.1f} --rsiOverBoughtThresh={:.1f} --trendAngleThresh={:.1f} --trendLinregPeriods={:d}'\
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_ManyTraining --taStrategy=100 --bbPriceType={:d} --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --rsiOverSoldThresh={:.1f} --rsiOverBoughtThresh={:.1f} --trendAngleThresh={:.1f} --trendLinregPeriods={:d}'\
         .format(experimentHome, bbPriceType, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, rsiOverSoldThresh, rsiOverBoughtThresh, trendAngleThresh, trendLinregPeriods )
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
