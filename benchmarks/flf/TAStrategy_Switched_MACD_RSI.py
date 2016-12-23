@@ -19,15 +19,15 @@ def myAlgo(params, **kwargs):
     bbPriceType = int(params.get("bbPriceType", "0"))
     #bbTimePeriod = int(params.get("bbTimePeriod", "10"))
     #bbStdevs = float(params.get("bbStdevs", "2.0"))
-    rsiDCPeriodFraction = float(params.get("rsiDCPeriodFraction", "0.5"))
+    rsiDCPeriodFraction = int(params.get("rsiDCPeriodFraction", "9"))
     trendEMAPeriod = int(params.get("trendEMAPeriod", "50"))
     rsiOverSoldThresh = float(params.get("rsiOverSoldThresh", "30.0"))
     rsiOverBoughtThresh = float(params.get("rsiOverBoughtThresh", "70"))
     trendAngleThresh = float(params.get("trendAngleThresh", "10.0"))
     trendLinregPeriods = int(params.get("trendLinregPeriods", "20"))
 
-    macdSlowPeriodFraction = float(params.get("macdSlowPeriodFraction", "1.3"))
-    macdFastPeriodFraction = float(params.get("macdFastPeriodFraction", "0.6"))
+    macdSlowPeriodFraction = int(params.get("macdSlowPeriodFraction", "26"))
+    macdFastPeriodFraction = int(params.get("macdFastPeriodFraction", "12"))
     signalperiod = int(params.get("signalperiod", "9"))
 
     stdevLookBackPeriods = int(params.get("stdevLookBackPeriods", "10"))
