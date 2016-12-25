@@ -45,7 +45,7 @@ def myAlgo(params, **kwargs):
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
 
 
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_ManyTraining --taStrategy=130 --bbPriceType={:d} --macdSlowPeriodFraction={:0.2f} --macdFastPeriodFraction={:0.2f} --signalperiod={:d} --stdevLookBackPeriods={:d} --stdevSmoothingPeriods={:d} --minRVIBuyThreshold={:d} --rsiDCPeriodFraction={:.2f} --trendEMAPeriod={:d} --rsiOverSoldThresh={:.1f} --rsiOverBoughtThresh={:.1f} --trendAngleThresh={:.1f} --trendLinregPeriods={:d} --cmoTimePeriod={:d} --cmoTrendThreshold={:.1f} --potentialThresh={:.2f}'\
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_ManyTraining --taStrategy=130 --bbPriceType={:d} --macdSlowPeriodFraction={:d} --macdFastPeriodFraction={:d} --signalperiod={:d} --stdevLookBackPeriods={:d} --stdevSmoothingPeriods={:d} --minRVIBuyThreshold={:d} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --rsiOverSoldThresh={:.1f} --rsiOverBoughtThresh={:.1f} --trendAngleThresh={:.1f} --trendLinregPeriods={:d} --cmoTimePeriod={:d} --cmoTrendThreshold={:.1f} --potentialThresh={:.2f}'\
         .format(experimentHome, bbPriceType, macdSlowPeriodFraction, macdFastPeriodFraction, signalperiod,
                 stdevLookBackPeriods,
                 stdevSmoothingPeriods,
