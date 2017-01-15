@@ -25,7 +25,7 @@ pip install numpy
 pip install scipy==0.13.2
 pip install matplotlib
 
-3.) run setup.py
+3.) Run setup script
    cd HPOLib
    python setup.py install
  
