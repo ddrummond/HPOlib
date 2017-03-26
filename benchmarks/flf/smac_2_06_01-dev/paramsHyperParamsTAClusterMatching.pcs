@@ -1,0 +1,4 @@
+clusterTIPeriod [10, 60] [20]i
+clusterMaxDistanceThreshold [0.45, 0.80] [0.68]
+clusterMatchingLookbackWindow [15, 60] [40]i
+maxClusterDistance [1.0, 15.0] [4.0]
