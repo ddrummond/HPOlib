@@ -30,7 +30,7 @@ def myAlgo(params, **kwargs):
     clusterTIPeriod = int(params.get("clusterTIPeriod", "20"))
     clusterMaxDistanceThreshold = float(params.get("clusterMaxDistanceThreshold", "0.68"))
     clusterMatchingLookbackWindow = int(params.get("clusterMatchingLookbackWindow", "40"))
-    maxClusterDistance = float(params.get("maxClusterDistance", "8.0"))
+    maxClusterDistance = float(params.get("maxClusterDistance", "1000.0"))
 
     # **kwargs contains further information, like
     # for crossvalidation
@@ -38,7 +38,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
 
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_OPT_BY_CLUSTER --maxOptEvaluations=75 --clusterTIPeriod={:d} --clusterMaxDistanceThreshold={:.2f} --clusterMatchingLookbackWindow={:d} --maxClusterDistance={:.2f} --taStrategy=100 --bbPriceType={:d} --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --rsiOverSoldThresh={:.1f} --rsiOverBoughtThresh={:.1f} --trendAngleThresh={:.1f} --trendLinregPeriods={:d}'\
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --writeOutputToFiles=False --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --evalMethod=TA_OPT_BY_CLUSTER --maxOptEvaluations=125 --clusterTIPeriod={:d} --clusterMaxDistanceThreshold={:.2f} --clusterMatchingLookbackWindow={:d} --maxClusterDistance={:.2f} --taStrategy=100 --bbPriceType={:d} --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --rsiOverSoldThresh={:.1f} --rsiOverBoughtThresh={:.1f} --trendAngleThresh={:.1f} --trendLinregPeriods={:d}'\
         .format(experimentHome,
                 clusterTIPeriod,
                 clusterMaxDistanceThreshold,
