@@ -11,6 +11,4 @@ rsiOverSoldThresh [20.0, 35.0] [30.0]
 rsiOverBoughtThresh [65.0, 80.0] [70.0]
 trendAngleThresh [0.5, 10.0] [9.0]
 trendLinregPeriods [10, 40] [26]i
-cmoTimePeriod [5, 40] [14]i
-cmoTrendThreshold [5.0, 80.0] [25.0]
 potentialThresh [0.0, 4.0] [0.0]
