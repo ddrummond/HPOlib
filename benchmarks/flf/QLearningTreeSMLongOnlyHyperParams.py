@@ -20,21 +20,42 @@ def myAlgo(params, **kwargs):
     exitLongThresh = float(params.get("exitLongThresh", "0.0028681"))
     reversalSig = int(params.get("reversalSig", "3"))
     #Hyper params
-    maxTreeDepth = int(params.get("maxTreeDepth", "68"))
-    min_samples_leaf = int(params.get("min_samples_leaf", "5"))
-    min_samples_split = int(params.get("min_samples_split", "43"))
-    n_estimators = int(params.get("n_estimators", "50"))
+    maxTreeDepth = int(params.get("maxTreeDepth", "162"))
+    min_samples_leaf = int(params.get("min_samples_leaf", "2"))
+    min_samples_split = int(params.get("min_samples_split", "7"))
+    n_estimators = int(params.get("n_estimators", "108"))
     max_features = None
     if "max_features" in params:
         max_features = int(params["max_features"])
     else:
         max_features = "auto"
+
+    #RSI BBand args
+    bbTimePeriod = int(params.get("bbTimePeriod", "10"))
+    bbStdevs = float(params.get("bbStdevs", "1.670222"))
+    rsiDCPeriodFraction = int(params.get("rsiDCPeriodFraction", "19"))
+    trendEMAPeriod = int(params.get("trendEMAPeriod", "24"))
+    trendLinregPeriods = int(params.get("trendLinregPeriods", "29"))
+    trendRateOfChangeLookBack = int(params.get("trendRateOfChangeLookBack", "11"))
+
+    #Doma args
+    ma1Period = int(params.get("ma1Period", "4"))
+    ma2Period = int(params.get("ma2Period", "5"))
+    ma1Type = int(params.get("ma1Type", "4"))  #TEMA
+    ma2Type = int(params.get("ma2Type", "0")) #SMA
+    stdLookback = int(params.get("stdLookback", "60"))
+
+    #macd
+    macdSlowPeriodFraction = int(params.get("macdSlowPeriodFraction", "26"))
+    macdFastPeriodFraction = int(params.get("macdFastPeriodFraction", "12"))
+    signalperiod = int(params.get("signalperiod", "9"))
+
     # **kwargs contains further information, like
     # for crossvalidation
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=3 --trainingEpochs=15 --useSaveQSpace=True --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=3 --trainingEpochs=15 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:d} --macdFastPeriodFraction={:d} --signalperiod={:d}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, signalperiod)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()

@@ -1,0 +1,6 @@
+ma1Period [2, 15] [4]i
+ma2Period [3, 40] [5]i
+ma1Type [0, 8] [4]i
+ma2Type [0, 8] [0]i
+stdLookback [20, 80] [60]i
+

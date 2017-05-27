@@ -1,0 +1,11 @@
+maxTreeDepth [10, 200] [145]i
+min_samples_leaf [2, 15] [2]i
+min_samples_split [4, 60] [28]i
+n_estimators [25, 175] [127]i
+bbTimePeriod [5, 20] [12]i
+bbStdevs [1.0, 2.25] [1.50]
+rsiDCPeriodFraction [7, 21] [14]i
+trendEMAPeriod [20, 60] [52]i
+trendLinregPeriods [10, 40] [13]i
+trendRateOfChangeLookBack [5, 30] [6]i
+
