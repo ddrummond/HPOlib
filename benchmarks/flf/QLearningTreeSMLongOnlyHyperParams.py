@@ -46,8 +46,8 @@ def myAlgo(params, **kwargs):
     stdLookback = int(params.get("stdLookback", "60"))
 
     #macd
-    macdSlowPeriodFraction = int(params.get("macdSlowPeriodFraction", "26"))
-    macdFastPeriodFraction = int(params.get("macdFastPeriodFraction", "12"))
+    macdSlowPeriodFraction = float(params.get("macdSlowPeriodFraction", "26"))
+    macdFastPeriodFraction = float(params.get("macdFastPeriodFraction", "12"))
     signalperiod = int(params.get("signalperiod", "9"))
 
     # **kwargs contains further information, like
@@ -55,7 +55,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=3 --trainingEpochs=15 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:d} --macdFastPeriodFraction={:d} --signalperiod={:d}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, signalperiod)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=3 --trainingEpochs=15 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()

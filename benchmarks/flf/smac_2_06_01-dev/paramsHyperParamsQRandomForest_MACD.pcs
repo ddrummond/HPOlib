@@ -1,8 +1,7 @@
-maxTreeDepth [120, 250] [162]i
+maxTreeDepth [150, 300] [162]i
 min_samples_leaf [2, 15] [2]i
 min_samples_split [4, 60] [7]i
-n_estimators [75, 175] [108]i
-macdSlowPeriodFraction [10, 50] [26]i
-macdFastPeriodFraction [3, 25] [12]i
-signalperiod [3, 15] [9]i
+n_estimators [75, 175] [144]i
+macdSlowPeriodFraction [0.01, 0.25] [0.05]
+macdFastPeriodFraction [0.05, 1.0] [0.5]
 
