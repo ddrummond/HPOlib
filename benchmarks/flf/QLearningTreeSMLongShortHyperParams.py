@@ -16,14 +16,22 @@ def myAlgo(params, **kwargs):
     if x < 0 or x > 3.5:
         raise ValueError("x not between 0 and 3.5: %s" % x)
      '''
-    enterLongThresh = float(params.get("enterLongThresh", "0.0013"))
-    exitLongThresh = float(params.get("exitLongThresh", "0.0029"))
+    enterLongThresh = float(params.get("enterLongThresh", "nan"))
+    exitLongThresh = float(params.get("exitLongThresh", "nan"))
+    enterShortThresh = float(params.get("enterLongThresh", "nan"))
+    exitShortThresh = float(params.get("exitLongThresh", "nan"))
     reversalSig = int(params.get("reversalSig", "3"))
+
+    #Q Reward Params
+    sigma = float(params.get("sigma", "13.9548512008299"))
+    gamma = float(params.get("gamma", "0.08845844338693198"))
+    beta = float(params.get("beta", "1.0"))
+
     #Hyper params
-    maxTreeDepth = int(params.get("maxTreeDepth", "209"))
-    min_samples_leaf = int(params.get("min_samples_leaf", "10"))
-    min_samples_split = int(params.get("min_samples_split", "47"))
-    n_estimators = int(params.get("n_estimators", "170"))
+    maxTreeDepth = int(params.get("maxTreeDepth", "313"))
+    min_samples_leaf = int(params.get("min_samples_leaf", "11"))
+    min_samples_split = int(params.get("min_samples_split", "53"))
+    n_estimators = int(params.get("n_estimators", "152"))
     max_features = None
     if "max_features" in params:
         max_features = int(params["max_features"])
@@ -55,7 +63,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=3 --trainingEpochs=15 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f}'.format(experimentHome, enterLongThresh, exitLongThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=11 --trainingEpochs=15 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --enterShortThresh={:.4f} --exitShortThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f} --sigma={:.4f} --gamma={:.4f} --beta={:.4f}'.format(experimentHome, enterLongThresh, exitLongThresh, enterShortThresh, exitShortThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, sigma, gamma, beta)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()

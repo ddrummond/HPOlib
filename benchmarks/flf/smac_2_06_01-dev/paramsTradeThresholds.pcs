@@ -1,0 +1,4 @@
+enterLongThresh [0.0, 0.03] [0.0012742]
+exitLongThresh [-0.06, 0.06] [-0.06]
+enterShortThresh [0.0, 0.03] [0.0012742]
+exitShortThresh [-0.06, 0.06] [-0.06]
