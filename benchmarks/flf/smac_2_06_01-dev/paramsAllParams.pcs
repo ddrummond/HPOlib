@@ -1,6 +1,8 @@
-maxTreeDepth [100, 350] [313]i
-min_samples_leaf [2, 30] [11]i
-min_samples_split [4, 60] [53]i
-n_estimators [90, 250] [152]i
-gamma [0.0, 2.0] [0.07992583111494296]
-sigma [5.0, 40] [22.5]
+maxTreeDepth [175, 375] [315]i
+min_samples_leaf [0.00000001, 0.01] [1.538641991771142E-5]
+min_samples_split [0.0000001, 0.01] [1.4606475786493775E-4]
+n_estimators [150, 275] [207]i
+gamma [0.0, 3.0] [2.9852]
+sigma [1.0, 30] [3.6961]
+sigmaSAR [1.0, 60] [3.6961]
+commissionRate[0.0, 0.01] [0.00005]
