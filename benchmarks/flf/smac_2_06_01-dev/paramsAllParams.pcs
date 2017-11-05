@@ -1,8 +1,10 @@
-maxTreeDepth [175, 375] [315]i
-min_samples_leaf [0.00000001, 0.01] [1.538641991771142E-5]
-min_samples_split [0.0000001, 0.01] [1.4606475786493775E-4]
-n_estimators [150, 275] [207]i
-gamma [0.0, 3.0] [2.9852]
-sigma [1.0, 30] [3.6961]
-sigmaSAR [1.0, 60] [3.6961]
-commissionRate[0.0, 0.01] [0.00005]
+gamma [0.001, 3.0] [0.0136]
+sigma [1.0, 20] [2.5625]
+sigmaSAR [5.0, 100] [52.3854]
+reversalWeight0 [2.0, 25.0] [4.54]
+reversalWeight1 [1.0, 5.0] [1.01]
+maxTreeDepth [300, 500] [349]i
+min_samples_leaf [2, 15] [3]i
+min_samples_split [4, 45] [16]i
+n_estimators [175, 250] [241]i
+commissionRate[0.0, 0.005] [0.00005]
