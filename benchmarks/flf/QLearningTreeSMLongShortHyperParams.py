@@ -23,6 +23,12 @@ def myAlgo(params, **kwargs):
     minReverseLongThresh = float(params.get("minReverseLongThresh", "nan"))
     minReverseShortThresh = float(params.get("minReverseShortThresh", "nan"))
 
+    #Experience filters
+    # --collectRegressorStats={} --maxDistanceThresholdStdevs={:.4f} --maxExperienceZScoreThresh={:.4f}
+    collectRegressorStats = True #NOTE: turn this off if you don't want to filter an experience stats
+    maxDistanceThresholdStdevs = float(params.get("maxDistanceThresholdStdevs", "2.0"))
+    maxExperienceZScoreThresh = float(params.get("maxExperienceZScoreThresh", "0.20")) #Note, this is really max forrest-exceeds-compliance-threshold
+
     reversalSig = int(params.get("reversalSig", "3"))
 
     #Q Reward Params
@@ -71,7 +77,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=11 --trainingEpochs=1 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --enterShortThresh={:.4f} --exitShortThresh={:.4f} --minReverseLongThresh={:.4f} --minReverseShortThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=-1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f} --sigma={:.4f} --sigmaSAR={:.4f} --gamma={:.4f} --beta={:.4f} --commissionRate={:.5f} --reversalWeight0={:.2f} --reversalWeight1={:.2f}'.format(experimentHome, enterLongThresh, exitLongThresh, enterShortThresh, exitShortThresh, minReverseLongThresh, minReverseShortThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, sigma, sigmaSAR, gamma, beta, commissionRate, reversalWeight0, reversalWeight1)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=11 --trainingEpochs=1 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --enterShortThresh={:.4f} --exitShortThresh={:.4f} --minReverseLongThresh={:.4f} --minReverseShortThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=-1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f} --sigma={:.4f} --sigmaSAR={:.4f} --gamma={:.4f} --beta={:.4f} --commissionRate={:.5f} --reversalWeight0={:.2f} --reversalWeight1={:.2f} --collectRegressorStats={} --maxDistanceThresholdStdevs={:.4f} --maxExperienceZScoreThresh={:.4f}'.format(experimentHome, enterLongThresh, exitLongThresh, enterShortThresh, exitShortThresh, minReverseLongThresh, minReverseShortThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, sigma, sigmaSAR, gamma, beta, commissionRate, reversalWeight0, reversalWeight1, collectRegressorStats, maxDistanceThresholdStdevs, maxExperienceZScoreThresh)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()
