@@ -25,26 +25,27 @@ def myAlgo(params, **kwargs):
 
     #Experience filters
     # --collectRegressorStats={} --maxDistanceThresholdStdevs={:.4f} --maxExperienceZScoreThresh={:.4f}
-    collectRegressorStats = True #NOTE: turn this off if you don't want to filter an experience stats
-    maxDistanceThresholdStdevs = float(params.get("maxDistanceThresholdStdevs", "2.0"))
-    maxExperienceZScoreThresh = float(params.get("maxExperienceZScoreThresh", "0.20")) #Note, this is really max forrest-exceeds-compliance-threshold
+    collectRegressorStats = False #NOTE: turn this off if you don't want to filter an experience stats
+    maxDistanceThresholdStdevs = float(params.get("maxDistanceThresholdStdevs", "2.9997"))
+    maxExperienceZScoreThresh = float(params.get("maxExperienceZScoreThresh", "0.2117")) #Note, this is really max forrest-exceeds-compliance-threshold
 
     reversalSig = int(params.get("reversalSig", "3"))
+    reversalPointSmoothingPeriod = int(params.get("reversalPointSmoothingPeriod", "1"))
 
     #Q Reward Params
-    sigma = float(params.get("sigma", "2.5625"))
+    sigma = float(params.get("sigma", "3.1537"))
     sigmaSAR = float(params.get("sigmaSAR", "52.3854"))
-    gamma = float(params.get("gamma", "0.0136"))
+    gamma = float(params.get("gamma", "0.5595"))
     beta = float(params.get("beta", "1.0"))
-    commissionRate = float(params.get("commissionRate", "0.00005"))
+    commissionRate = float(params.get("commissionRate", "0.000375"))
     reversalWeight0 = float(params.get("reversalWeight0", "4.54"))
-    reversalWeight1 = float(params.get("reversalWeight1", "1.01"))
+    reversalWeight1 = float(params.get("reversalWeight1", "1.02"))
 
     #Hyper params
-    maxTreeDepth = int(params.get("maxTreeDepth", "349"))
+    maxTreeDepth = int(params.get("maxTreeDepth", "376"))
     min_samples_leaf = int(params.get("min_samples_leaf", "3"))
-    min_samples_split = int(params.get("min_samples_split", "16"))
-    n_estimators = int(params.get("n_estimators", "241"))
+    min_samples_split = int(params.get("min_samples_split", "15"))
+    n_estimators = int(params.get("n_estimators", "218"))
 
     max_features = None
     if "max_features" in params:
@@ -77,7 +78,7 @@ def myAlgo(params, **kwargs):
     #    kwargs['folds'] is 1 when no cv
     #    kwargs['fold'] is the current fold. The index is zero-based
     experimentHome = os.environ['EXPERIMENT_HOME'] #/home/ddrummond/PycharmProjects
-    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=11 --trainingEpochs=1 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --enterShortThresh={:.4f} --exitShortThresh={:.4f} --minReverseLongThresh={:.4f} --minReverseShortThresh={:.4f} --reversalSig={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=-1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f} --sigma={:.4f} --sigmaSAR={:.4f} --gamma={:.4f} --beta={:.4f} --commissionRate={:.5f} --reversalWeight0={:.2f} --reversalWeight1={:.2f} --collectRegressorStats={} --maxDistanceThresholdStdevs={:.4f} --maxExperienceZScoreThresh={:.4f}'.format(experimentHome, enterLongThresh, exitLongThresh, enterShortThresh, exitShortThresh, minReverseLongThresh, minReverseShortThresh, reversalSig, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, sigma, sigmaSAR, gamma, beta, commissionRate, reversalWeight0, reversalWeight1, collectRegressorStats, maxDistanceThresholdStdevs, maxExperienceZScoreThresh)
+    cmd = r'python3 -u {:s}/tutorials/src/flf/StrategyRunner.py --random_state=1234 --inputGlobPath=tests/testData/features_reinfocement_training_*.csv --writeOutputToFiles=False --model=11 --trainingEpochs=1 --useSaveQSpace=False --enterLongThresh={:.4f} --exitLongThresh={:.4f} --enterShortThresh={:.4f} --exitShortThresh={:.4f} --minReverseLongThresh={:.4f} --minReverseShortThresh={:.4f} --reversalSig={:d} --reversalPointSmoothingPeriod={:d} --maxTreeDepth={:d} --n_estimators={:d} --min_samples_leaf={:d} --min_samples_split={:d} --max_features={} --instanceOrder=0 --oob_score=False --n_jobs=-1 --warm_start=False --isSAR=False --bbTimePeriod={:d} --bbStdevs={:.2f} --rsiDCPeriodFraction={:d} --trendEMAPeriod={:d} --trendLinregPeriods={:d} --trendRateOfChangeLookBack={:d} --stdLookback={:d} --macdSlowPeriodFraction={:.2f} --macdFastPeriodFraction={:.2f} --sigma={:.4f} --sigmaSAR={:.4f} --gamma={:.4f} --beta={:.4f} --commissionRate={:.5f} --reversalWeight0={:.2f} --reversalWeight1={:.2f} --collectRegressorStats={} --maxDistanceThresholdStdevs={:.4f} --maxExperienceZScoreThresh={:.4f}'.format(experimentHome, enterLongThresh, exitLongThresh, enterShortThresh, exitShortThresh, minReverseLongThresh, minReverseShortThresh, reversalSig, reversalPointSmoothingPeriod, maxTreeDepth, n_estimators, min_samples_leaf, min_samples_split, max_features, bbTimePeriod, bbStdevs, rsiDCPeriodFraction, trendEMAPeriod, trendLinregPeriods, trendRateOfChangeLookBack, stdLookback, macdSlowPeriodFraction, macdFastPeriodFraction, sigma, sigmaSAR, gamma, beta, commissionRate, reversalWeight0, reversalWeight1, collectRegressorStats, maxDistanceThresholdStdevs, maxExperienceZScoreThresh)
     print("DD executing command: " + cmd)
     p = subprocess.Popen([cmd], shell=True, cwd=r'{:s}/tutorials/src/'.format(experimentHome), stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
     output, err = p.communicate()
