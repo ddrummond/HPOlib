@@ -25,27 +25,27 @@ def myAlgo(params, **kwargs):
 
     #Experience filters
     # --collectRegressorStats={} --maxDistanceThresholdStdevs={:.4f} --maxExperienceZScoreThresh={:.4f}
-    collectRegressorStats = False #NOTE: turn this off if you don't want to filter an experience stats
-    maxDistanceThresholdStdevs = float(params.get("maxDistanceThresholdStdevs", "2.9997"))
-    maxExperienceZScoreThresh = float(params.get("maxExperienceZScoreThresh", "0.2117")) #Note, this is really max forrest-exceeds-compliance-threshold
+    collectRegressorStats = True #NOTE: turn this off if you don't want to filter an experience stats
+    maxDistanceThresholdStdevs = float(params.get("maxDistanceThresholdStdevs", "1.2839123941130484"))
+    maxExperienceZScoreThresh = float(params.get("maxExperienceZScoreThresh", "0.6942967167987499")) #Note, this is really max forrest-exceeds-compliance-threshold
 
     reversalSig = int(params.get("reversalSig", "3"))
-    reversalPointSmoothingPeriod = int(params.get("reversalPointSmoothingPeriod", "1"))
+    reversalPointSmoothingPeriod = int(params.get("reversalPointSmoothingPeriod", "6"))
 
     #Q Reward Params
-    sigma = float(params.get("sigma", "3.1537"))
-    sigmaSAR = float(params.get("sigmaSAR", "52.3854"))
-    gamma = float(params.get("gamma", "0.5595"))
+    sigma = float(params.get("sigma", "10.9475"))
+    sigmaSAR = float(params.get("sigmaSAR", "63.8328"))
+    gamma = float(params.get("gamma", "0.0657"))
     beta = float(params.get("beta", "1.0"))
-    commissionRate = float(params.get("commissionRate", "0.000375"))
+    commissionRate = float(params.get("commissionRate", "0.00038"))
     reversalWeight0 = float(params.get("reversalWeight0", "4.54"))
     reversalWeight1 = float(params.get("reversalWeight1", "1.02"))
 
     #Hyper params
-    maxTreeDepth = int(params.get("maxTreeDepth", "376"))
+    maxTreeDepth = int(params.get("maxTreeDepth", "496"))
     min_samples_leaf = int(params.get("min_samples_leaf", "3"))
-    min_samples_split = int(params.get("min_samples_split", "15"))
-    n_estimators = int(params.get("n_estimators", "218"))
+    min_samples_split = int(params.get("min_samples_split", "45"))
+    n_estimators = int(params.get("n_estimators", "176"))
 
     max_features = None
     if "max_features" in params:
